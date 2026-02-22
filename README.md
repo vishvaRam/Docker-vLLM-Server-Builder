@@ -15,14 +15,14 @@ vishva123/nvidia-cuda-13.0.2-cudnn-devel-ubuntu24.04-python-3.12
 ## 🚀 Features
 - CUDA 12.x / 13.x + cuDNN enabled
 - Python 3.12
-- vLLM `0.13.0`
+- vLLM `0.15.0`
 - Flash Attention + FlashInfer support
 - Optimized for:
   - Large context models (32k+)
   - Quantized models (AWQ / Marlin)
   - Multi-model serving (LLMs + embedding models)
 - Fully compatible with official vLLM CLI:
-  https://docs.vllm.ai/en/v0.13.0/cli/serve/
+  https://docs.vllm.ai/en/v0.15.0/cli/serve/
 
 ---
 
@@ -34,7 +34,7 @@ FROM vishva123/nvidia-cuda-13.0.2-cudnn-devel-ubuntu24.04-python-3.12
 RUN pip install --upgrade pip uv
 
 RUN uv pip install --system \
-    "vllm[audio,video]==0.13.0" --torch-backend=cu128
+    "vllm[audio,video]==0.15.0" --torch-backend=cu128
 
 RUN uv pip install --system \
     flashinfer-python --no-cache-dir \
