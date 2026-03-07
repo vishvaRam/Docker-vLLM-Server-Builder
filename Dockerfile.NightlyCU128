@@ -1,0 +1,16 @@
+FROM vishva123/nvidia-cuda-12.8.1-cudnn-devel-ubuntu24.04-python-3.12:latest
+
+RUN pip install --upgrade pip uv
+
+# 1. Added --prerelease=allow because nightly builds are 'rc' or 'dev' versions
+# 2. Added --index-strategy unsafe-best-match to help uv find the right wheel across indexes
+RUN uv pip install --system \
+    --prerelease=allow \
+    --index-strategy unsafe-best-match \
+    vllm --torch-backend=cu128 --extra-index-url https://wheels.vllm.ai/nightly
+
+RUN uv pip install --system transformers==5.3.0 tokenizers
+
+EXPOSE 8000
+
+ENTRYPOINT ["vllm", "serve"]

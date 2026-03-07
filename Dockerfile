@@ -1,13 +1,9 @@
-FROM vishva123/nvidia-cuda-12.8.1-cudnn-devel-ubuntu24.04-python-3.12
+FROM vishva123/nvidia-cuda-12.6.1-cudnn-devel-ubuntu24.04-python-3.12
 
 RUN pip install --upgrade pip uv
 
 RUN uv pip install --system \ 
-    "vllm[audio,video]==0.15.0" --torch-backend=cu128
-
-RUN uv pip install --system \ 
-    flashinfer-python --no-cache-dir \
-    flash-attn --no-build-isolation
+    "vllm[audio,video]==0.17.0" --torch-backend=cu128
 
 EXPOSE 8000
 
